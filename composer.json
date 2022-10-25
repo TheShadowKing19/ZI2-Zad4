@@ -1,0 +1,12 @@
+{
+    "name": "mikolaj/zi2_zad4",
+    "type": "project",
+    "require": {
+        "doctrine/dbal": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mikolaj\\Zi2Zad4\\": "src/"
+        }
+    }
+}
