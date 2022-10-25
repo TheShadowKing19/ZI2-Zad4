@@ -41,7 +41,26 @@ try {
     $tableName = 'my_new_table';
     $schema = new Schema();
     $tab = $schema->createTable($tableName);
-    $tab->addColumn('id', 'integer',);
+    $tab->addColumn('id', 'integer',['autoincrement'=>true]);
+    $tab->addColumn('napis', 'string',['length'=>64]);
+    $tab->addColumn('liczba', 'integer');
+    $tab->setPrimaryKey(['id']);
+    $sql = $schema->toSql($conn->getDatabasePlatform());
+    $conn->executeStatement($sql[0]);
+
+    $queryBuilder3 = $conn->createQueryBuilder();
+    $queryBuilder3->insert('my_new_table')
+        ->values([
+            'napis' => '?',
+            'liczba' => '?',
+        ])
+        ->setParameters(['jeden', 01]);
+    $queryBuilder3->executeStatement();
+    $queryBuilder3->setParameters([
+        1 => 'dwa',
+        2 => 02
+    ]);
+    $queryBuilder3->executeStatement();
 }
 catch (Exception $e)
 {
